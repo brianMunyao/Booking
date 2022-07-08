@@ -45,6 +45,7 @@ const GameCard = ({ data }) => {
 					lbl="GET TICKET"
 					styles={'gc-book'}
 					to={`/home/available/${data.id}`}
+					state={data}
 				/>
 			</Container>
 		</Link>
@@ -79,8 +80,19 @@ const Container = styled.div`
 	}
 
 	.gc-fixture {
-		display: flex;
-		align-items: center;
+		display: grid;
+		grid-template-columns: 1fr 30px 1fr;
+		gap: 10px;
+		.gc-f-right {
+			justify-content: start;
+		}
+		.gc-f-left {
+			justify-content: end;
+		}
+		.gc-vs {
+			text-align: center;
+			margin: auto;
+		}
 
 		.gc-f {
 			display: flex;
@@ -99,7 +111,6 @@ const Container = styled.div`
 		img {
 			width: 30px;
 			height: 30px;
-			/* background: crimson; */
 		}
 	}
 
@@ -108,7 +119,8 @@ const Container = styled.div`
 		color: black;
 	}
 
-	@media (max-width: 540px) {
+	@media (max-width: 604px) {
+		display: flex;
 		flex-direction: column;
 		align-items: center;
 		.gc-date-time {

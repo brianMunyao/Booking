@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-const AppBtn = ({ lbl, onClick, to = '#', styles = '', goldBtn }) => {
+const AppBtn = ({ lbl, onClick, to = '#', state, styles = '', goldBtn }) => {
 	let col = { background: 'gold', color: 'black' };
 
 	return onClick ? (
@@ -13,7 +13,7 @@ const AppBtn = ({ lbl, onClick, to = '#', styles = '', goldBtn }) => {
 			{lbl}
 		</Container>
 	) : (
-		<Link to={to}>
+		<Link to={to} state={state}>
 			<Container className={`btn ${styles}`} style={goldBtn && col}>
 				{lbl}
 			</Container>

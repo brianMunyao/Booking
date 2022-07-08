@@ -1,7 +1,7 @@
 import md5 from 'md5';
 import moment from 'moment';
 
-import logo from '../assets/arsenal.png';
+import logo from '../assets/logo.png';
 import arsenal from '../assets/arsenal.png';
 import chelsea from '../assets/chelsea.png';
 import crystal from '../assets/crystal palace.png';
@@ -49,7 +49,7 @@ export const getImage = (name = '') => {
 export const getMonthData = (arr = []) => {
     const sorted = arr.sort((a, b) => moment(a.date) - moment(b.date));
 
-    let res = [{ month: 'January 2022', data: [] }];
+    let res = [];
     sorted.forEach((v) => {
         const mm = moment(v.date).format('MMMM YYYY');
 

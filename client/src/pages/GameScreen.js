@@ -1,19 +1,20 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import NumberPicker from 'react-widgets/NumberPicker';
+// import NumberPicker from 'react-widgets/NumberPicker';
 
 import AppBtn from '../components/AppBtn';
 import Separator from '../components/Separator';
 import { getImage, getMonthData, stadium } from '../apis/funcs';
 import moment from 'moment';
 import GroupList from '../components/GroupList';
-import { buyTicket, getMatches } from '../apis/users';
+import { buyTicket, getMatches, isLoggedIn } from '../apis/users';
 import { useCookies } from 'react-cookie';
 
 const GameScreen = () => {
 	const [info, setInfo] = useState(null);
 	const location = useLocation();
+	const navigate = useNavigate();
 	const [tOpen, setTOpen] = useState(false);
 	// const [tickets, setTickets] = useState(1);
 	const [more, setMore] = useState([]);
@@ -53,12 +54,16 @@ const GameScreen = () => {
 	};
 
 	const handlePayment = async () => {
-		const res = await buyTicket(cookies.user[0].id, info.id);
-		if (res.data) {
-			alert('Ticket bought successfully');
-			window.location.replace('localhost:3000/home/mytickets');
+		if (isLoggedIn(cookies)) {
+			const res = await buyTicket(cookies.user[0].id, info.id);
+			if (res.data) {
+				alert('Ticket bought successfully');
+				navigate('/home/mytickets');
+			} else {
+				alert('Ticket purchase failed');
+			}
 		} else {
-			alert('Ticket purchase failed');
+			navigate('/login');
 		}
 	};
 

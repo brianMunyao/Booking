@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useCookies } from 'react-cookie';
 import { IoPersonCircle } from 'react-icons/io5';
+import { Link, useNavigate } from 'react-router-dom';
 
 import Logo from './Logo';
 import logo from '../assets/liverpool.png';
@@ -11,17 +12,22 @@ import AppBtn from './AppBtn';
 const NavBar = () => {
 	const [cookies, removeCookie] = useCookies(['user']);
 	const [open, setOpen] = useState(false);
+	const navigate = useNavigate();
 
 	const signout = () => {
 		removeCookie('user');
-		window.location.replace('localhost:3000/');
+		navigate('/');
 	};
 
 	return (
 		<Container open={open}>
-			<Logo size={35} img={logo} />
+			<Link to="/">
+				<div className="nav-logo">
+					<Logo size={35} img={logo} />
 
-			<span className="nb-title">Liverpool</span>
+					<span className="nb-title">Liverpool</span>
+				</div>
+			</Link>
 
 			{isLoggedIn(cookies) && (
 				<div className="nb-user" onMouseEnter={() => setOpen(true)}>
@@ -53,12 +59,18 @@ const NavBar = () => {
 const Container = styled.div`
 	display: flex;
 	align-items: center;
+	justify-content: space-between;
 	padding: 15px;
 	background: bisque;
+
+	.nav-logo {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
 	.nb-title {
 		text-transform: uppercase;
 		margin-left: 10px;
-		margin-right: auto;
 		font-weight: 700;
 		font-size: 20px;
 		letter-spacing: 0.4px;

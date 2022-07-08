@@ -18,7 +18,7 @@ const MainApp = () => {
 		{ id: 2, title: 'MY TICKETS', to: '/home/mytickets' },
 	];
 
-	const Test = () => {
+	const HomeRoutes = () => {
 		return (
 			<Container>
 				<NavBar />
@@ -35,6 +35,7 @@ const MainApp = () => {
 							to={v.to}
 							onClick={() => setActiveTab(v.id)}>
 							<Tab
+								key={i}
 								active={activeTab === v.id}
 								className="tab-item">
 								{v.title}
@@ -57,7 +58,7 @@ const MainApp = () => {
 	return (
 		<BrowserRouter>
 			<Routes>
-				<Route path="home/*" element={<Test />} />
+				<Route path="home/*" element={<HomeRoutes />} />
 				<Route path="/" element={<Navigate to="/home" />} />
 				<Route path="/login" element={<LoginScreen />} />
 				<Route path="/signup" element={<SignUpScreen />} />
