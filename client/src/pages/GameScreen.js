@@ -21,18 +21,18 @@ const GameScreen = () => {
 
 	const [cookies] = useCookies(['user']);
 
-	const init = useCallback(async () => {
+	const init = useCallback(async (item) => {
 		const res = await getMatches();
 		if (res.data) {
-			setMore(getMonthData(filterItem(res.data, info.id)));
+			setMore(getMonthData(filterItem(res.data, item.id)));
 		}
-	}, [info.id]);
+	}, []);
 
 	useEffect(() => {
 		const d = location.state;
 		setInfo(d);
 
-		init();
+		init(d);
 	}, [location.state, init]);
 
 	const team = (lbl, left) => {
