@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 import AppBtn from '../components/AppBtn';
 import Separator from '../components/Separator';
-import { getImage, getMonthData, stadium } from '../apis/funcs';
+import { filterItem, getImage, getMonthData, stadium } from '../apis/funcs';
 import moment from 'moment';
 import GroupList from '../components/GroupList';
 import { buyTicket, getMatches, isLoggedIn } from '../apis/users';
@@ -24,9 +24,9 @@ const GameScreen = () => {
 	const init = useCallback(async () => {
 		const res = await getMatches();
 		if (res.data) {
-			setMore(getMonthData(res.data));
+			setMore(getMonthData(filterItem(res.data, info.id)));
 		}
-	}, []);
+	}, [info.id]);
 
 	useEffect(() => {
 		const d = location.state;

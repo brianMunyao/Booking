@@ -70,4 +70,8 @@ export const getMonthData = (arr = []) => {
     return res;
 };
 
+export const filterItem = (arr = [], id) => {
+    return arr.filter((item) => item.id !== id);
+};
+
 export const stadium = 'Anfield';
