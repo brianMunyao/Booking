@@ -1,7 +1,8 @@
 # Stadium Booking App
-### Web view
+## Web view
 ![Screenshot](full.png)
 ![Screenshot](full1.png)
 
-### Mobile view
-![Screenshot](Picture1.png)
+## Mobile view
+![Screenshot](mob.png)
+![Screenshot](mob1.png)
