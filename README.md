@@ -1,4 +1,4 @@
-# Booking
+# Stadium Booking App
 ### Web view
 ![Screenshot](full.png)
 ![Screenshot](full1.png)
